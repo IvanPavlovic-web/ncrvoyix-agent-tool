@@ -30,4 +30,4 @@ cd ncrvoyix-agent-tool
 1. Click the Code button and select Download ZIP
 2. Extract the ZIP file to your preferred location
 3. Navigate to the project folder
-4. 
+4. Open **index.html**, and no additional installation or setup required as it runs directly in the browser
