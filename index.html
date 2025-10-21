@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NCR Voyix Connect | Agent Tool</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="preloader">
+      <div class="gradient-blur"></div>
+      <div class="loader">
+        <div class="circles">
+          <div class="circle" style="--i: 0"></div>
+          <div class="circle" style="--i: 1"></div>
+          <div class="circle" style="--i: 2"></div>
+          <div class="circle" style="--i: 3"></div>
+          <div class="circle" style="--i: 4"></div>
+          <div class="circle" style="--i: 5"></div>
+          <div class="circle" style="--i: 6"></div>
+          <div class="circle" style="--i: 7"></div>
+        </div>
+        <div class="welcome-text">
+          <p>Welcome back!</p>
+          <p>Dobrodošao nazad!</p>
+          <p>Maligayang pagbabalik!</p>
+        </div>
+      </div>
+    </div>
+    <div id="main-content" style="display: none">
+      <header class="header-container">
+        <img
+          class="header-logo"
+          src="Images/ot_company_logo.png"
+          alt="NCR Voyix Logo"
+        />
+        <nav>
+          <button class="nav-btn" id="btn-ticket-template">
+            Ticket Template
+          </button>
+          <button class="nav-btn" id="btn-rma">RMA</button>
+          <button class="nav-btn" id="btn-command-list">Command List</button>
+          <button class="nav-btn" id="btn-sorr">SORR</button>
+          <button class="nav-btn" id="btn-timezone">Time Zone Converter</button>
+          <button class="nav-btn" id="btn-hardware-helper">
+            Hardware Helper
+          </button>
+          <button class="nav-btn" id="btn-save-data">Save Data</button>
+        </nav>
+      </header>
+      <article class="scroll-banner">
+        <div class="scroll-text">
+          Welcome to the new NCR Voyix Agent Tool — Powered by Ivan Pavlović —
+          Submit tickets with ease and forget about the old tool! 😎👌
+        </div>
+      </article>
+      <section id="sorr-section" class="tool-section" style="display: none">
+        <div class="section-header">
+          <h2>
+            SORR -
+            <em
+              ><span>Settlement</span> - Offline (Offline Reprocessing) -
+              <span>Reconciliation (Discrepancy)</span> - Resubmission</em
+            >
+          </h2>
+          <div class="section-controls">
+            <button class="control-btn" id="sorr-copy-summary">
+              Copy Summary
+            </button>
+            <button class="control-btn" id="sorr-copy-all">Copy All</button>
+            <button class="control-btn" id="sorr-clear">Clear</button>
+          </div>
+        </div>
+        <div class="form-container">
+          <div class="form-group">
+            <label>Caller's First and Last Name:</label>
+            <input type="text" id="sorr-caller-name" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label>Caller's Phone Number:</label>
+            <input type="text" id="sorr-caller-phone" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label>Caller's Email Address:</label>
+            <input type="email" id="sorr-caller-email" class="form-input" />
+          </div>
+          <div class="form-spacer"></div>
+          <div class="form-group">
+            <label>Company Number:</label>
+            <input type="text" id="sorr-company-number" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label>Store Number:</label>
+            <input type="text" id="sorr-store-number" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label>Aloha Key:</label>
+            <input type="text" id="sorr-aloha-key" class="form-input" />
+          </div>
+          <div class="form-spacer"></div>
+          <div class="form-group">
+            <label>Issue Type:</label>
+            <select id="sorr-issue-type" class="form-select">
+              <option value="">-- Select Issue Type --</option>
+              <option value="Settlement Issue">Settlement Issue</option>
+              <option value="Resubmission">Resubmission</option>
+              <option value="Discrepancy">Discrepancy</option>
+              <option value="Offline File Reprocessing">
+                Offline File Reprocessing
+              </option>
+            </select>
+          </div>
+          <div id="sorr-issue-notes" class="notes-container"></div>
+          <div id="sorr-discrepancy-fields" style="display: none">
+            <div class="form-group">
+              <label>Start Date of Discrepancy:</label>
+              <input type="date" id="sorr-start-date" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>End Date of Discrepancy:</label>
+              <input type="date" id="sorr-end-date" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Exact or approximate missing amount:</label>
+              <input type="text" id="sorr-missing-amount" class="form-input" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="timezone-section" class="timezone-section">
+        <div class="timezone-form">
+          <h2 class="tmz-section-header">Time Zone Converter</h2>
+          <label for="input-time">Enter Date & Time:</label>
+          <input type="datetime-local" id="input-time" class="tmz-input" />
+          <label for="input-zone">From Timezone:</label>
+          <select id="input-zone" class="tmz-input">
+            <option value="America/Los_Angeles">
+              Pacific Standard/Daylight Time (US)
+            </option>
+            <option value="America/Chicago">
+              Central Standard/Daylight Time (US)
+            </option>
+            <option value="America/New_York">
+              Eastern Standard/Daylight Time (US)
+            </option>
+            <option value="Europe/Sarajevo">Banja Luka (Europe)</option>
+            <option value="Asia/Cebu">Cebu, Philippines</option>
+          </select>
+          <label for="output-zones">Convert To:</label>
+          <select id="output-zones" multiple class="tmz-input" size="5">
+            <option value="America/Los_Angeles">
+              Pacific Standard/Daylight Time (US)
+            </option>
+            <option value="America/Chicago">
+              Central Standard/Daylight Time (US)
+            </option>
+            <option value="America/New_York">
+              Eastern Standard/Daylight Time (US)
+            </option>
+            <option value="Europe/Sarajevo">Banja Luka (Europe)</option>
+            <option value="Asia/Cebu">Cebu, Philippines</option>
+          </select>
+          <button id="convert-time" class="control-btn">Convert</button>
+          <div id="converted-times"></div>
+        </div>
+      </section>
+      <section
+        id="hardware-section"
+        class="tool-section hardware-section"
+        style="display: none"
+      >
+        <div class="section-header">
+          <h2>Hardware Helper</h2>
+        </div>
+        <div class="hardware-filters">
+          <button class="filter-btn" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="cables">Cables</button>
+          <button class="filter-btn" data-filter="equinox">Equinox</button>
+          <button class="filter-btn" data-filter="verifone">Verifone</button>
+        </div>
+        <div class="hardware-gallery">
+          <figure class="gallery-item cables equinox">
+            <img src="Images/hardware/1618-C020-0018.png" alt="Cable" />
+            <figcaption>
+              Equinox I/F Adapter Cable (PID 1618-C020-0018)
+            </figcaption>
+          </figure>
+          <figure class="gallery-item cables equinox">
+            <img src="Images/hardware/1618-C019-0003.png" alt="Cable" />
+            <figcaption>Equinox P-USB Cable (PID 1618-C019-0003)</figcaption>
+          </figure>
+          <figure class="gallery-item cables equinox">
+            <img src="Images/hardware/Equinox-Bundle-1.png" alt="Cable" />
+            <figcaption>Equinox Bundle 1</figcaption>
+          </figure>
+          <figure class="gallery-item cables equinox">
+            <img src="Images/hardware/Equinox-Bundle-2.png" alt="Cable" />
+            <figcaption>Equinox Bundle 2</figcaption>
+          </figure>
+          <figure class="gallery-item equinox">
+            <img
+              src="Images/hardware/Equinox-Countertop-Printer.png"
+              alt="Equinox"
+            />
+            <figcaption>Countertop Equinox 6200m w/ Printer</figcaption>
+          </figure>
+          <figure class="gallery-item equinox">
+            <img src="Images/hardware/Equinox-Stand.jpg" alt="Equinox" />
+            <figcaption>Stand Equinox 6200m</figcaption>
+          </figure>
+          <figure class="gallery-item equinox">
+            <img src="Images/hardware/Equinox-Countertop.png" alt="Equinox" />
+            <figcaption>Countertop Equinox 6200m</figcaption>
+          </figure>
+          <figure class="gallery-item equinox">
+            <img src="Images/hardware/Equinox-Mobile.png" alt="Equinox" />
+            <figcaption>Mobile (Pay-at-Table) Equinox 6200m</figcaption>
+          </figure>
+          <figure class="gallery-item equinox">
+            <img
+              src="Images/hardware/Equinox-Mobile-Printer.png"
+              alt="Equinox"
+            />
+            <figcaption>
+              Mobile (Pay-at-Table) Equinox 6200m w/ Printer
+            </figcaption>
+          </figure>
+          <figure class="gallery-item equinox">
+            <img src="Images/hardware/Equinox-8500i.jpg" alt="Equinox" />
+            <figcaption>Equinox 8500i</figcaption>
+          </figure>
+          <figure class="gallery-item verifone">
+            <img src="Images/hardware/Verifone-MX915.png" alt="Verifone" />
+            <figcaption>Verifone MX915 (Legacy)</figcaption>
+          </figure>
+          <figure class="gallery-item verifone">
+            <img src="Images/hardware/Verifone-MX925.jpg" alt="Verifone" />
+            <figcaption>Verifone MX925 (Legacy)</figcaption>
+          </figure>
+          <figure class="gallery-item verifone">
+            <img src="Images/hardware/Verifone-p400.jpg" alt="Verifone" />
+            <figcaption>Verifone P400 (Engage)</figcaption>
+          </figure>
+          <figure class="gallery-item verifone">
+            <img src="Images/hardware/Verifone-m400.jpg" alt="Verifone" />
+            <figcaption>Verifone M400 (Engage)</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section id="command-list-section" class="command-section">
+        <div class="command-header">
+          Commands
+          <div class="command-filters">
+            <button class="command-filter-btn active" data-filter="all">
+              All
+            </button>
+            <button class="command-filter-btn" data-filter="info">Info</button>
+            <button class="command-filter-btn" data-filter="network">
+              Network
+            </button>
+            <button class="command-filter-btn" data-filter="system">
+              System
+            </button>
+          </div>
+        </div>
+
+        <div id="command-list" class="command-list"></div>
+      </section>
+      <section
+        id="save-data-section"
+        class="save-data-section"
+        style="display: none"
+      >
+        <div class="save-data-header">
+          <h2>Save <span>Data</span></h2>
+        </div>
+        <div class="save-data-inputs">
+          <input
+            type="text"
+            id="data-input"
+            placeholder="Enter data"
+            style="width: 100%; padding: 10px; margin-bottom: 10px"
+          />
+          <button id="btn-save" style="padding: 10px 20px; cursor: pointer">
+            Save
+          </button>
+          <p id="save-message" style="margin-top: 10px"></p>
+        </div>
+
+        <div class="save-data-container" id="save-data-container"></div>
+      </section>
+
+      <footer class="footer-container">
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>SERVER_EPS</h4>
+            <ul>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://hspclient.servereps.com/ServerEPS/Login.aspx"
+                  >ServerEPS Hospitality</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://www.servereps.com/ServerEPS/Login.aspx"
+                  >ServerEPS Common / Retail</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://www.cte.servereps.com/ServerEPS/Login.aspx"
+                  >ServerEPS CTE / Lab</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://www.gov.servereps.com/ServerEPS/default.aspx"
+                  >ServerEPS DeCa</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>DATA MANAGER</h4>
+            <ul>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://10.1.115.50/DataManager/Login.aspx"
+                  >DataManager Hospitality</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href=" https://10.1.115.181/DataManager/Login.aspx?"
+                  >DataManager Common / Retail</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://dm.cte.servereps.com/DataManager/Login.aspx"
+                  >DataManager CTE / Lab</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://10.201.110.13/DataManager/Login.aspx"
+                  >DataManager DeCa</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>COMPANY</h4>
+            <ul>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix.sharepoint.com/sites/npgbl/SitePages/Index.aspx"
+                  >SharePoint</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix.sharepoint.com/:o:/r/sites/npgbl/_layouts/15/Doc.aspx?sourcedoc=%7B7393e6ef-8497-4a8b-ab30-2c6388d464bb%7D&action=view&wd=target(PTO%20-%20AUX%20-%20OFFICE.one%7C01eac6ad-487b-472d-882b-553bb2a75748%2FVacation%20and%20Paid%20Leave%7Cd6258597-33da-4a9b-aed4-7a7ad3bc921f%2F)&wdorigin=NavigationUrl"
+                  >Team Notebook</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix-saas.atlassian.net/wiki/home"
+                  >Confluence</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix-saas.atlassian.net/jira/software/c/projects/CPCLIENTS/boards/36"
+                  >Atlassian JIRA</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://www.myworkday.com/ncr/d/home.htmld"
+                  >Workday</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix.service-now.com/hrcentral?id=hrc_sc_homepage"
+                  >HR Central</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix.service-now.com/itcentral?id=it_central_sc_home&sys_id=7e6390b713f0ef4084dad2f18144b0df"
+                  >IT Central</a
+                >
+              </li>
+              <li>
+                <a target="_blank" href="https://www.timesheet.ncrvoyix.com/"
+                  >NCR Voyix Timesheet</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>RESOURCES</h4>
+            <ul>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix.splunkcloud.com/en-US/account/login?return_to=%2Fen-US%2Fapp%2Fsearch%2Fsearch"
+                  >Splunk</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://okm.ncrvoyix.com/infocenter/index?page=content&id=PR17025"
+                  >OKM</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://filetransfer.ncrvoyix.com/aft/#/"
+                  >AFT Large File Transfer</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrsaas.cyberark.cloud/privilegecloud/Accounts"
+                  >Cyber ARK</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://www.alohaupdates.com/RadiantUpdatePortal/SignIn.aspx?ReturnUrl=%2fRadiantUpdatePortal%2fDownloadMSI.aspx"
+                  >Radiant Update</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix.sharepoint.com/sites/npgbl/SitePages/PaymentsOvernight.aspx"
+                  >Payments Overnight</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>TICKETING APPLICATIONS</h4>
+            <ul>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix.service-now.com/now/cwf/agent/list/params/list-id/b643621cc31b12500e2b5c43e40131e4/tiny-id/xf3WcTWN40gZR70nufJP8DS6B5itjmYv"
+                  >ServiceNOW</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix.lightning.force.com/lightning/o/Case/list?filterName=HOS_Payments_L11"
+                  >SalesForce</a
+                >
+              </li>
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ncrvoyix.sharepoint.com/:x:/s/NCR_Payments_BL/Ee_8LY7mJRdIr4g9whFgSusB1hhJd1oGBS5x9P3Her2vcQ?e=QbVJ34"
+                  >NCR Voyix Schedule</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="footer-logo">
+            <img
+              class="header-logo"
+              src="Images/ot_company_logo_white.png"
+              alt="NCR Voyix Logo"
+            />
+          </div>
+          <div class="footer-legal">
+            <p>
+              This tool was independently created by Ivan Pavlovic, an agent of
+              this company, with the sole purpose of supporting colleagues and
+              simplifying daily workflows. No company resources were used in the
+              development of this application. All rights of use are granted
+              permanently and unconditionally to the company, without request,
+              compensation, or expectation thereof.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
