@@ -40,10 +40,11 @@ cd ncrvoyix-agent-tool
 ```bash
 ncrvoyix-agent-tool/
 ├── index.html
-├── css/
-│   └── style.css
-├── js/
-│   └── script.js
-├── images/
+├── styles.css
+├── script.js
+├── Images/
+│   └── <images>
+├── favicon/
+│   └── <favicons>
 └── README.md
 ```
