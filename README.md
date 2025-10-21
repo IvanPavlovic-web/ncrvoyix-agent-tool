@@ -37,6 +37,7 @@ cd ncrvoyix-agent-tool
 - **Deployment** - Static web application used on sharepoint and there is no need for a server
 
 ## Project Structure
+```bash
 ncrvoyix-agent-tool/
 ├── index.html
 ├── css/
@@ -45,4 +46,4 @@ ncrvoyix-agent-tool/
 │   └── script.js
 ├── images/
 └── README.md
-
+```
