@@ -6,7 +6,7 @@
 
 A **centralized web application** built to streamline technical support workflow, consolidating essential tools and resources into one interface to speed up troubleshooting and improve agent productivity.
 
-## 🌟 Features
+## Features
 
 - **Customer Data Management** - Streamlined customer information entry and tracking during troubleshooting sessions  
 - **RMA Handling System** - Complete workflow for managing returns and hardware replacements  
@@ -16,7 +16,7 @@ A **centralized web application** built to streamline technical support workflow
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 ### Method 1: Clone with Git
 ```bash
