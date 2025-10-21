@@ -413,6 +413,7 @@ function initializeApp() {
   let tabCount = 0;
   const tabs = [];
   let isInTicketSection = false;
+  let previousSection = "";
 
   const ticketBtn = document.getElementById("btn-ticket-template");
   const rmaBtn = document.getElementById("btn-rma");
@@ -432,6 +433,7 @@ function initializeApp() {
 
   createNewTab();
   isInTicketSection = true;
+  previousSection = "ticket";
   tabsContainer.style.display = "flex";
   tabContents.style.display = "block";
   rmaSection.style.display = "none";
@@ -461,44 +463,54 @@ function initializeApp() {
     tabsContainer.style.display = "flex";
     tabContents.style.display = "block";
 
-    if (isInTicketSection && tabs.length > 0) {
+    if (previousSection === "ticket") {
       createNewTab();
     } else {
-      isInTicketSection = true;
       if (tabs.length === 0) {
         createNewTab();
       } else {
         setActiveTab(tabs[0]);
       }
     }
+
+    isInTicketSection = true;
+    previousSection = "ticket";
   }
 
   function handleRmaButtonClick() {
     hideAllSections();
     isInTicketSection = false;
+    previousSection = "rma";
     rmaSection.style.display = "block";
   }
 
   function handleSorrButtonClick() {
     hideAllSections();
+    previousSection = "sorr";
     document.getElementById("sorr-section").style.display = "block";
   }
 
   function handleCommandButtonClick() {
     hideAllSections();
+    previousSection = "command";
     document.getElementById("command-list-section").style.display = "block";
   }
 
   function handleTimezoneButtonClick() {
     hideAllSections();
+    previousSection = "timezone";
     document.getElementById("timezone-section").style.display = "block";
   }
+
   function handleHardwareButtonClick() {
     hideAllSections();
+    previousSection = "hardware";
     document.getElementById("hardware-section").style.display = "block";
   }
+
   function handleSaveDataButtonClick() {
     hideAllSections();
+    previousSection = "save";
     document.getElementById("save-data-section").style.display = "block";
   }
   function createNewTab() {
