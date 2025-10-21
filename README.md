@@ -35,3 +35,14 @@ cd ncrvoyix-agent-tool
 - **Frontend** - HTML5, CSS3, JavaScript
 - **Compatibility** - All modern web browsers
 - **Deployment** - Static web application used on sharepoint and there is no need for a server
+
+## Project Structure
+ncrvoyix-agent-tool/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+├── images/
+└── README.md
+
