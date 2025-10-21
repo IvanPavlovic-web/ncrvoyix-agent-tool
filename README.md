@@ -1,42 +1,26 @@
-Agent Tool
-A centralized web application built to streamline and streamline the workflow for Technical Support Agents. This tool consolidates essential resources and functions into a single interface to speed up troubleshooting and improve daily productivity.
+# Agent Tool
 
-Features
-Customer Data Management - Streamlined customer information entry and tracking
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-RMA Handling - Complete system for managing returns and hardware replacements
+A **centralized web application** built to streamline technical support workflow, consolidating essential tools and resources into one interface to speed up troubleshooting and improve agent productivity.
 
-Time Zone Converter - Easy scheduling across different time zones for after-hours maintenance
+## 🌟 Features
 
-Command Reference - Centralized list of frequently used commands
+- **Customer Data Management** - Streamlined customer information entry and tracking during troubleshooting sessions  
+- **RMA Handling System** - Complete workflow for managing returns and hardware replacements  
+- **Time Zone Converter** - Essential tool for scheduling critical changes during off-hours  
+- **Command Reference** - Centralized list of frequently used commands for quick access  
+- **Hardware Database** - Comprehensive hardware component reference guide  
 
-Hardware Database - Comprehensive hardware component reference guide
+---
 
-Installation
-Option 1: Clone with Git
-bash
+## ⚙️ Installation
+
+### Method 1: Clone with Git
+```bash
 git clone https://github.com/IvanPavlovic-web/ncrvoyix-agent-tool.git
 cd ncrvoyix-agent-tool
-Option 2: Download ZIP
-Navigate to the GitHub repository: https://github.com/IvanPavlovic-web/ncrvoyix-agent-tool
 
-Click the "Code" button and select "Download ZIP"
-
-Extract the ZIP file to your desired location
-
-Usage
-Open the extracted folder
-
-Launch the application by opening index.html in your web browser
-
-No additional setup or installation required - it runs directly in the browser
-
-Technology Stack
-HTML5
-
-CSS3
-
-Vanilla JavaScript
-
-Support
-For issues or questions, please open an issue on the GitHub repository.
+### Method 2
